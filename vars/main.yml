@@ -1,0 +1,12 @@
+---
+# vars file for tfctl
+tfctl_os: '{{ ansible_system }}'
+tfctl_arch: '{{ tfctl_arch_map[ansible_architecture] }}'
+tfctl_platform: '{{ tfctl_os }}_{{ tfctl_arch }}'
+tfctl_archive: tfctl_{{ tfctl_platform }}.{{ tfctl_archive_type | default("tar.gz") }}
+tfctl_tmp_archive: '{{ tfctl_tmp_dir | default("/tmp") }}/{{ tfctl_archive }}'
+tfctl_url: '{{ tfctl_mirror }}/v{{ tfctl_ver }}/{{ tfctl_archive }}'
+tfctl_checksum: '{{ tfctl_checksums[tfctl_ver][tfctl_platform] }}'
+tfctl_install_dir: '{{ tfctl_parent_install_dir }}/tfctl_{{ tfctl_ver }}_{{ tfctl_platform }}'
+tfctl_install_exe: '{{ tfctl_install_dir }}/tfctl'
+tfctl_link: '{{ tfctl_parent_install_dir }}/bin/tfctl'
